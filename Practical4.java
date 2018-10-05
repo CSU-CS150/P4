@@ -18,6 +18,7 @@ public class Practical4 {
 	public static final String CHAR_INSTRUCTION = "Enter characters to remove (default: aeiou): ";
 
 	public static final String VOWELS = "aeiou";
+
 	/**
 	 * mainMenu() more comments here
 	 *
@@ -29,57 +30,11 @@ public class Practical4 {
 		int usersChoice = getUsersMenuChoice();
 		
 		// Student TODO
-		if (usersChoice == 1) {
-			System.out.print(STRING_INSTRUCTION);
-			String s1 = getStringFromUser();
-			System.out.print(CHAR_INSTRUCTION);
-			String s2 = getStringFromUser();
-			String shortString;
 
-			if(s2.isEmpty()) {
-				shortString = stringShortener(s1);
-			} else {
-			  shortString = stringShortener(s1, s2);
-			}
-			System.out.println(shortString);
-		}
-		else if (usersChoice == 2) {
-			String fileName = getFileNameFromUser();
-			runLengthEncodingWithFileData(fileName);
-		}
-		else if (usersChoice == 3) {
-			System.out.print(STRING_INSTRUCTION);
-			String s = getStringFromUser();
-			runLengthEncodingWithClientInput(s);
-		}
-		else if (usersChoice == 0) {
-			return; // exit the menu
-		}
-		else {
-			System.out.println(USER_ERROR_MESSAGE);
-		}
-		System.out.println();
-		mainMenu();
 		// end Student TODO
 	}
 
 
-	// Student TODO - Lab 14
-	/*public String stringShortener(String stringToCheck, String charsToRemove) {
-		String shortenedString = "";
-		boolean removeThis = false;
-
-		for (int i = 0; i < stringToCheck.length(); i++) {
-			removeThis = false;
-			for (int j = 0; j < charsToRemove.length(); j++) {
-				removeThis |= stringToCheck.charAt(i) == charsToRemove.charAt(j); // expend for student version
-			}
-			if(!removeThis) shortenedString += stringToCheck.charAt(i);
-		}
-
-		return shortenedString;
-	}*/
-	// end Student TODO - Lab 14
 
 	/**
 	 * stringShortener() Remove all characters listed in charsToRemove from stringToCheck. 
@@ -91,34 +46,12 @@ public class Practical4 {
 	 * @param stringToCheck
 	 * @return
 	 */
-
-
 	public String stringShortener(String stringToCheck) {
 		return stringShortener(stringToCheck, VOWELS);
 	}
 
 	// Student TODO - Lab 14 (or above this?)
-	public String stringShortener(String stringToCheck, String charsToRemove) {
-		if(stringToCheck.isEmpty()) { return ""; }
 
-		String shortenedString = "" + stringToCheck.charAt(0);
-		char previous = stringToCheck.charAt(0);
-
-		for (int i = 1; i < stringToCheck.length(); i++) {
-			char tmp =  stringToCheck.charAt(i);
-
-			if(Character.isWhitespace(previous)  || !hasCharacter(tmp, charsToRemove)) {
-				shortenedString += tmp;
-			}
-			previous = tmp;
-		}
-
-		return shortenedString;
-	}
-
-	public boolean hasCharacter(char x, String group) {
-		return group.toLowerCase().contains(String.valueOf(Character.toLowerCase(x)));
-	}
 	// end Student TODO - Lab 14
 
 
@@ -128,49 +61,24 @@ public class Practical4 {
 	/**
 	 * runLengthEncoding()
 	 * 
+	 * @param str
+	 * @return
+	 */
+
+
+	/**
+	 *
+	 * @param x
+	 * @param count
+	 * @return
+	 */
+
+	/**
+	 *
 	 * @param s
 	 * @return
 	 */
-	public String runLengthEncoding(String str) {
-		String rtn = "";
-		int counter = 0;
-		for(int i = 1; i < str.length(); i++) {
-			if(str.charAt(i-1) == str.charAt(i)) {
-				counter++;
-			}else {
-				rtn += String.valueOf(counter+1)+ str.charAt(i-1);
-				counter = 0;
-			}
-		}
-		rtn +=  String.valueOf(counter+1) + str.charAt(str.length()-1);
-		return rtn;
-	}
 
-	public String expand(char x, int count) {
-		String rtn = "";
-		for(int i = 0; i < count; i++) {
-			rtn += x;
-		}
-		return rtn;
-	}
-
-	public String runLengthDecoding(String s) {
-		// decode Strings such as 3B2W2B --> BBBWWBB
-		String rtn = "";
-		String count = "";
-		for(int i = 0; i< s.length(); i++) {
-			char tmp = s.charAt(i);
-			if ( count.isEmpty() || Character.isDigit(tmp)) {  // have to do this for nubmers > 9
-				if(Character.isDigit(tmp)) count += tmp;
-				else rtn += tmp;  // to catch the single letter cases - not sure if this is needed
-			} else {  // found a letter
-				int amount = Integer.parseInt(count);
-				rtn += expand(tmp, amount);
-				count = ""; // reset it
-			}
-		}
-		return rtn;
-	}
 
 
 
