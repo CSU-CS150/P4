@@ -59,7 +59,7 @@ public class Main {
      */
     private String getFileNameFromUser() {
         System.out.print("Enter file name (black_white_pseudo_image.txt): ");
-        String input =  userInput.nextLine();
+        String input =  userInput.nextLine().trim();
         if(input.isEmpty()) return "black_white_pseudo_image.txt";
         return input;
     }
@@ -172,7 +172,7 @@ public class Main {
             System.out.print(STRING_INSTRUCTION);
             String s1 = getStringFromUser();
             System.out.print(CHAR_INSTRUCTION);
-            String s2 = getStringFromUser();
+            String s2 = getStringFromUser().trim();
             String shortString;
 
             if(s2.isEmpty()) {
