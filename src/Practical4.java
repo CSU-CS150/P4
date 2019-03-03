@@ -14,7 +14,7 @@ import java.util.Scanner;
  *         YOUR EMAIL  <br>
  *         Computer Science Department <br>
  *         Colorado State University
- * @version 1.0
+ * @version 2019010
  */
 public class Practical4 {
 	/** constant variable used to determine the default letters to remove **/
